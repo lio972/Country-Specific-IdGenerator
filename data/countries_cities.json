@@ -1,0 +1,49 @@
+{
+  "countries": [
+    {
+      "code": "US",
+      "name": "United States",
+      "phone_code": "+1",
+      "phone_pattern": "^\\+1\\d{10}$",
+      "time_zone": "America/New_York",
+      "currency": "USD",
+      "cities": ["New York", "Los Angeles", "Chicago"]
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "phone_code": "+33",
+      "phone_pattern": "^\\+33\\d{9}$",
+      "time_zone": "Europe/Paris",
+      "currency": "EUR",
+      "cities": ["Paris", "Marseille", "Lyon"]
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "phone_code": "+49",
+      "phone_pattern": "^\\+49\\d{10,11}$",
+      "time_zone": "Europe/Berlin",
+      "currency": "EUR",
+      "cities": ["Berlin", "Hamburg", "Munich"]
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "phone_code": "+44",
+      "phone_pattern": "^\\+44\\d{9,10}$",
+      "time_zone": "Europe/London",
+      "currency": "GBP",
+      "cities": ["London", "Birmingham", "Manchester"]
+    },
+    {
+      "code": "CA",
+      "name": "Canada",
+      "phone_code": "+1",
+      "phone_pattern": "^\\+1\\d{10}$",
+      "time_zone": "America/Toronto",
+      "currency": "CAD",
+      "cities": ["Toronto", "Montreal", "Vancouver"]
+    }
+  ]
+}
