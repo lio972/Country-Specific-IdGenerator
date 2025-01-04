@@ -3,12 +3,13 @@
 ## Table of Contents
 1. [Overview](#overview)
 2. [Features](#features)
-3. [Architecture](#architecture)
-4. [Installation](#installation)
-5. [Usage](#usage)
-6. [API Documentation](#api-documentation)
-7. [Development](#development)
-8. [Release Notes](#release-notes)
+3. [User Interface](#user-interface)
+4. [Architecture](#architecture)
+5. [Installation](#installation)
+6. [Usage](#usage)
+7. [API Documentation](#api-documentation)
+8. [Development](#development)
+9. [Release Notes](#release-notes)
 
 ## Overview
 The Country Tools application provides two main functionalities:
@@ -22,6 +23,48 @@ The Country Tools application provides two main functionalities:
 - Random identity generation
 - Detailed error handling and user feedback
 - RESTful API for future extensions
+
+## User Interface
+
+### Color Scheme
+- Primary Color: #2563eb (Blue)
+- Secondary Color: #1e40af (Dark Blue)
+- Background: #f8fafc (Light Gray)
+- Text: #1e293b (Dark Gray)
+- Success: #16a34a (Green)
+- Error: #dc2626 (Red)
+
+### Layout
+1. **Header**
+   - Application title
+   - Menu buttons for switching between validation and generation
+
+2. **Validation Section**
+   - Country selection dropdown
+   - City input field
+   - Phone number input field
+   - Validate button
+   - Validation results display
+
+3. **Generation Section**
+   - Country selection dropdown
+   - Generate button
+   - Generated identity display
+
+4. **Output Area**
+   - Shows results of validation or generation
+   - Includes loading states and error messages
+
+### Responsive Design
+- Works on all screen sizes from mobile to desktop
+- Adaptive layout with proper spacing
+- Touch-friendly controls
+
+### Interactive Elements
+- Buttons with hover effects
+- Loading states for async operations
+- Clear visual feedback for success/error states
+- Smooth transitions between sections
 
 ## Architecture
 
@@ -149,21 +192,36 @@ npm run dev
 - Features:
   - Country validation
   - Identity generation
-  - Modern UI
+  - Basic UI
   - Docker support
   - Comprehensive documentation
 
 ### Version 1.1.0
 - Added:
+  - Modern, responsive UI design
+  - Color scheme implementation
+  - Loading states and animations
   - Improved error handling
-  - Loading states
-  - Better user feedback
-  - Responsive design
-  - Color scheme improvements
+  - Better user feedback mechanisms
+  - Touch-friendly controls
 - Fixed:
   - Dropdown population issues
   - API reliability
   - Data loading problems
+  - Mobile layout issues
+
+### Version 1.2.0
+- UI Enhancements:
+  - Added smooth transitions between sections
+  - Improved button hover effects
+  - Better visual hierarchy
+  - Enhanced typography
+  - Consistent spacing and padding
+- Functional Improvements:
+  - Added input validation
+  - Improved error messages
+  - Better loading indicators
+  - Enhanced accessibility features
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
