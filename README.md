@@ -1,87 +1,27 @@
-# Country and City Validation Application (WebContainer Version)
+# Country Tools Application
 
 ## Table of Contents
 1. [Overview](#overview)
-2. [Changes from Previous Version](#changes-from-previous-version)
-3. [Project Files](#project-files)
-4. [Architecture](#architecture)
-5. [Features](#features)
-6. [Interface Functionality](#interface-functionality)
-7. [Installation and Running](#installation-and-running)
-8. [Usage Examples](#usage-examples)
-9. [Development](#development)
-10. [Troubleshooting](#troubleshooting)
+2. [Features](#features)
+3. [Architecture](#architecture)
+4. [Installation](#installation)
+5. [Usage](#usage)
+6. [API Documentation](#api-documentation)
+7. [Development](#development)
+8. [Release Notes](#release-notes)
 
 ## Overview
-This version of the Country and City Validation Application has been adapted to run in WebContainer, using only Python's standard library. It provides a web interface and basic API functionality.
+The Country Tools application provides two main functionalities:
+1. **Validation**: Validate city names and phone numbers against selected countries
+2. **Generation**: Generate random identities based on selected countries
 
-## Changes from Previous Version
-
-### Removed Features
-- AI Agent functionality (due to WebContainer limitations)
-- Flask dependency
-- OpenAI integration
-
-### Added Features
-- Built-in HTTP server using Python's standard library
-- Simplified validation logic
-- WebContainer-compatible implementation
-
-### Modified Features
-- Simplified data structure
-- Basic phone number validation
-- City validation against static data
-
-## Project Files
-
-### File Structure
-```
-country-validator/
-├── app.py                # Main application logic
-├── data/
-│   └── countries_cities.json  # Country and city data
-├── static/
-│   └── index.html        # Web interface
-└── README.md             # Documentation
-```
-
-### File Descriptions
-
-#### app.py
-- **Role**: Main application file
-- **Responsibilities**:
-  - HTTP server implementation
-  - API endpoint handlers
-  - File serving
-- **Key Components**:
-  - BaseHTTPRequestHandler implementation
-  - Request routing
-  - Basic validation functions
-
-#### data/countries_cities.json
-- **Role**: Data storage
-- **Structure**:
-  - JSON format
-  - Contains country-specific data
-- **Fields**:
-  - Country code
-  - Name
-  - Phone code
-  - Phone pattern
-  - Time zone
-  - Currency
-  - List of cities
-
-#### static/index.html
-- **Role**: Web interface
-- **Components**:
-  - HTML structure
-  - CSS styling
-  - JavaScript functionality
-- **Features**:
-  - Country selection
-  - City and phone number input
-  - Basic validation feedback
+## Features
+- Modern, responsive user interface
+- Country selection dropdown with automatic population
+- City and phone number validation
+- Random identity generation
+- Detailed error handling and user feedback
+- RESTful API for future extensions
 
 ## Architecture
 
@@ -93,7 +33,7 @@ country-validator/
          |
          v
 +-------------------+
-| Python HTTP Server|  <--- Application Core
+|  Node.js Server   |  <--- Application Core
 +-------------------+
          |
          v
@@ -103,87 +43,127 @@ country-validator/
 ```
 
 ### Components
-1. **Web Interface**
-   - Built with HTML/CSS/JavaScript
-   - Communicates with HTTP server via API
-   - Provides basic validation interface
+1. **Frontend**
+   - HTML/CSS/JavaScript
+   - Modern UI with proper color scheme
+   - Responsive design
+   - Client-side validation
 
-2. **HTTP Server**
-   - Handles HTTP requests
-   - Serves static files
-   - Implements basic API endpoints
+2. **Backend**
+   - Node.js HTTP server
+   - Static file serving
+   - JSON data endpoint
 
-3. **Data Storage**
+3. **Data**
    - JSON file (countries_cities.json)
    - Contains country-specific data
-   - Used for validation
+   - Used for validation and generation
 
-## Features
-- **Web Interface**
-  - Country selection dropdown
-  - City and phone number input
-  - Basic validation feedback
-- **API Endpoints**
-  - Get list of countries
-  - Get cities for a specific country
-- **Validation**
-  - Basic phone number format checking
-  - City-country matching
+## Installation
 
-## Installation and Running
+### Prerequisites
+- Node.js (v16 or higher)
+- Modern web browser
 
-### Running the Application
-1. Start the server:
+### Installation Steps
+1. Clone the repository
+2. Install dependencies:
 ```bash
-python app.py
+npm install
 ```
-2. Access the web interface at http://localhost:8080
-
-## Usage Examples
-
-### Web Interface
-1. Select a country from the dropdown
-2. Enter a city and/or phone number
-3. Click "Validate" to see results
-
-### API Usage
-1. Get list of countries:
+3. Start the server:
 ```bash
-curl http://localhost:8080/api/countries
+node server.js
 ```
-2. Get cities for a country:
+
+### Docker Installation
+1. Build the Docker image:
 ```bash
-curl http://localhost:8080/api/cities/US
+docker build -t country-tools .
+```
+2. Run the container:
+```bash
+docker run -p 3000:3000 country-tools
+```
+
+## Usage
+1. Access the application at http://localhost:3000
+2. Use the menu to switch between validation and generation
+3. For validation:
+   - Select a country
+   - Enter city and phone number
+   - Click "Validate"
+4. For generation:
+   - Select a country
+   - Click "Generate Identity"
+
+## API Documentation
+### Endpoints
+- `GET /data/countries_cities.json`
+  - Returns the complete country data
+
+### Example Response
+```json
+{
+  "countries": [
+    {
+      "code": "US",
+      "name": "United States",
+      "phone_code": "+1",
+      "phone_pattern": "^\\+1\\d{10}$",
+      "time_zone": "America/New_York",
+      "currency": "USD",
+      "cities": ["New York", "Los Angeles", "Chicago"]
+    }
+  ]
+}
 ```
 
 ## Development
+### Running in Development Mode
+1. Start the development server:
+```bash
+npm run dev
+```
+2. The application will automatically reload when changes are made
 
 ### Adding New Countries
-1. Edit countries_cities.json
-2. Add new country object with required fields
-3. Add list of major cities
+1. Edit `data/countries_cities.json`
+2. Add new country object with required fields:
+```json
+{
+  "code": "XX",
+  "name": "Country Name",
+  "phone_code": "+XX",
+  "phone_pattern": "^\\+XX\\d{X}$",
+  "time_zone": "Continent/City",
+  "currency": "XXX",
+  "cities": ["City1", "City2"]
+}
+```
 
-### Extending Functionality
-1. Add new API endpoints as needed
-2. Modify web interface to support new features
-3. Enhance validation logic
+## Release Notes
 
-## Troubleshooting
+### Version 1.0.0
+- Initial release
+- Features:
+  - Country validation
+  - Identity generation
+  - Modern UI
+  - Docker support
+  - Comprehensive documentation
 
-### Common Issues
-1. **Invalid Phone Numbers**
-   - Verify country code
-   - Check phone number format
-   - Ensure proper international dialing code
-
-2. **Missing Data**
-   - Verify data file exists
-   - Check JSON structure
-   - Ensure required fields are present
-
-### Error Messages
-- **404 Not Found**: Resource not found
-- **500 Internal Server Error**: Server-side issue
+### Version 1.1.0
+- Added:
+  - Improved error handling
+  - Loading states
+  - Better user feedback
+  - Responsive design
+  - Color scheme improvements
+- Fixed:
+  - Dropdown population issues
+  - API reliability
+  - Data loading problems
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
