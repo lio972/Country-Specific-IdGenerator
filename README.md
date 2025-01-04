@@ -4,23 +4,28 @@
 1. [Overview](#overview)
 2. [Features](#features)
 3. [User Interface](#user-interface)
-4. [Architecture](#architecture)
-5. [Installation](#installation)
-6. [Usage](#usage)
-7. [API Documentation](#api-documentation)
-8. [Development](#development)
-9. [Release Notes](#release-notes)
+4. [Generation Functionality](#generation-functionality)
+5. [Architecture](#architecture)
+6. [Installation](#installation)
+7. [Usage](#usage)
+8. [API Documentation](#api-documentation)
+9. [Development](#development)
+10. [Release Notes](#release-notes)
 
 ## Overview
 The Country Tools application provides two main functionalities:
 1. **Validation**: Validate city names and phone numbers against selected countries
-2. **Generation**: Generate random identities based on selected countries
+2. **Generation**: Generate complete, valid identities based on selected countries
 
 ## Features
 - Modern, responsive user interface
 - Country selection dropdown with automatic population
 - City and phone number validation
-- Random identity generation
+- Complete identity generation including:
+  - Personal information (name, gender)
+  - Address details
+  - Identification numbers
+  - Financial information (credit cards)
 - Detailed error handling and user feedback
 - RESTful API for future extensions
 
@@ -49,22 +54,44 @@ The Country Tools application provides two main functionalities:
 3. **Generation Section**
    - Country selection dropdown
    - Generate button
-   - Generated identity display
+   - Form-like display of generated identity
 
 4. **Output Area**
    - Shows results of validation or generation
    - Includes loading states and error messages
+   - Formatted display of generated identities
 
-### Responsive Design
-- Works on all screen sizes from mobile to desktop
-- Adaptive layout with proper spacing
-- Touch-friendly controls
+## Generation Functionality
 
-### Interactive Elements
-- Buttons with hover effects
-- Loading states for async operations
-- Clear visual feedback for success/error states
-- Smooth transitions between sections
+### Generated Data Structure
+The generation feature creates complete, valid identities including:
+
+1. **Personal Information**
+   - First and last name
+   - Gender
+   - Phone number (country-specific format)
+
+2. **Address**
+   - Street address
+   - City
+   - ZIP code
+   - Country
+
+3. **Identification**
+   - Social Security Number (valid format)
+
+4. **Financial Information**
+   - Credit card type (Visa or MasterCard)
+   - Valid credit card number
+   - Expiration date (1-3 years in future)
+   - CVV code
+
+### Data Validation
+All generated data is:
+- Country-specific
+- Properly formatted
+- Valid according to standard patterns
+- Coherent across all fields
 
 ## Architecture
 
@@ -96,6 +123,7 @@ The Country Tools application provides two main functionalities:
    - Node.js HTTP server
    - Static file serving
    - JSON data endpoint
+   - Data generation logic
 
 3. **Data**
    - JSON file (countries_cities.json)
@@ -139,26 +167,41 @@ docker run -p 3000:3000 country-tools
 4. For generation:
    - Select a country
    - Click "Generate Identity"
+   - View complete identity information in form format
 
 ## API Documentation
 ### Endpoints
 - `GET /data/countries_cities.json`
   - Returns the complete country data
+- `GET /api/generate/{countryCode}`
+  - Generates a complete identity for the specified country
 
 ### Example Response
 ```json
 {
-  "countries": [
-    {
-      "code": "US",
-      "name": "United States",
-      "phone_code": "+1",
-      "phone_pattern": "^\\+1\\d{10}$",
-      "time_zone": "America/New_York",
-      "currency": "USD",
-      "cities": ["New York", "Los Angeles", "Chicago"]
+  "personal": {
+    "firstName": "John",
+    "lastName": "Smith",
+    "gender": "male",
+    "phone": "+11234567890"
+  },
+  "address": {
+    "street": "123 Main St",
+    "city": "New York",
+    "zip": "10001",
+    "country": "United States"
+  },
+  "identification": {
+    "ssn": "123-45-6789"
+  },
+  "financial": {
+    "creditCard": {
+      "type": "Visa",
+      "number": "4123456789012345",
+      "expiration": "12/25",
+      "cvv": "123"
     }
-  ]
+  }
 }
 ```
 
@@ -191,7 +234,7 @@ npm run dev
 - Initial release
 - Features:
   - Country validation
-  - Identity generation
+  - Basic identity generation
   - Basic UI
   - Docker support
   - Comprehensive documentation
@@ -222,6 +265,20 @@ npm run dev
   - Improved error messages
   - Better loading indicators
   - Enhanced accessibility features
+
+### Version 2.0.0
+- Major Update: Enhanced Generation Functionality
+  - Added complete identity generation including:
+    - Personal information (name, gender)
+    - Address details
+    - Identification numbers
+    - Financial information
+  - New form-like display for generated identities
+  - Improved data validation and formatting
+  - Country-specific data generation
+  - Realistic, valid data patterns
+  - Organized display of information in sections
+  - Better data coherence across fields
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.

@@ -1,0 +1,134 @@
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #1e40af;
+  --background-color: #f8fafc;
+  --text-color: #1e293b;
+  --success-color: #16a34a;
+  --error-color: #dc2626;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  margin: 0;
+  padding: 2rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.menu {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.menu button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.menu button:hover {
+  background-color: var(--secondary-color);
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+select, input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+button.action-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button.action-button:hover {
+  background-color: var(--secondary-color);
+}
+
+.output {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 0.25rem;
+  background-color: #f1f5f9;
+}
+
+.identity-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.identity-form .form-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.identity-form .form-section:last-child {
+  border-bottom: none;
+}
+
+.identity-form .form-group {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.identity-form .form-value {
+  padding: 0.5rem;
+  background: #f8fafc;
+  border-radius: 0.25rem;
+}
+
+.success {
+  color: var(--success-color);
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.loading {
+  color: #64748b;
+}
