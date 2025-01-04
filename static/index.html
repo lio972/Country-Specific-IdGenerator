@@ -1,74 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Country Validator</title>
+  <title>Multi-Server App</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
     .container { max-width: 800px; margin: 0 auto; }
-    .form-group { margin-bottom: 15px; }
-    label { display: block; margin-bottom: 5px; }
-    select, input, button { padding: 8px; font-size: 16px; width: 100%; }
     .output { margin-top: 20px; padding: 15px; background: #f5f5f5; }
-    .valid { color: green; }
-    .invalid { color: red; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Country Validator</h1>
-    
-    <div class="form-group">
-      <label for="country">Select Country:</label>
-      <select id="country"></select>
-    </div>
-    
-    <div class="form-group">
-      <label for="city">City:</label>
-      <input type="text" id="city" placeholder="Enter city">
-    </div>
-    
-    <div class="form-group">
-      <label for="phone">Phone Number:</label>
-      <input type="text" id="phone" placeholder="Enter phone number with country code">
-    </div>
-    
-    <button id="validate">Validate</button>
-    
+    <h1>Multi-Server Application</h1>
+    <button id="fetch-data">Fetch Data from Python Server</button>
     <div class="output" id="output"></div>
   </div>
 
   <script>
-    // Load countries
-    fetch('/api/countries')
-      .then(response => response.json())
-      .then(data => {
-        const select = document.getElementById('country');
-        data.forEach(country => {
-          const option = document.createElement('option');
-          option.value = country.code;
-          option.textContent = `${country.name} (${country.phone_code})`;
-          select.appendChild(option);
-        });
-      });
-
-    document.getElementById('validate').addEventListener('click', async () => {
-      const country = document.getElementById('country').value;
-      const city = document.getElementById('city').value;
-      const phone = document.getElementById('phone').value;
-      
-      // Validate phone number
-      const phoneValid = /^\+1\d{10}$/.test(phone); // Simple validation for demo
-      
-      // Validate city
-      const citiesResponse = await fetch(`/api/cities/${country}`);
-      const cities = await citiesResponse.json();
-      const cityValid = cities.includes(city);
-      
-      const output = document.getElementById('output');
-      output.innerHTML = `
-        <div class="${phoneValid ? 'valid' : 'invalid'}">Phone Number: ${phoneValid ? 'Valid' : 'Invalid'}</div>
-        <div class="${cityValid ? 'valid' : 'invalid'}">City: ${cityValid ? 'Valid' : 'Invalid'}</div>
-      `;
+    document.getElementById('fetch-data').addEventListener('click', async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/data');
+        const data = await response.json();
+        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById('output').textContent = 'Error fetching data: ' + error.message;
+      }
     });
   </script>
 </body>
